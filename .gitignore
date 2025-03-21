@@ -27,6 +27,19 @@
 *.lib
 
 # Executables
-*.exe
 *.out
 *.app
+
+# Images
+*.jpg
+
+# Python venv
+gui/Include/
+gui/Lib/
+gui/share/
+gui/pyvenv.cfg
+gui/Scripts/
+gui/tmp*
+
+# Keras model
+*.keras

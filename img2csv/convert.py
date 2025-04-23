@@ -9,7 +9,7 @@ for c in characters:
     for root, dirs, files in os.walk("input\\" + current_character):
         for f in files:
             f_path = os.path.join(root, f)
-            opt = subprocess.check_output("powershell -command ./main.exe " + f_path + " " + "output.csv")
+            opt = subprocess.check_output("powershell -command ./sobel.exe " + f_path + " " + "output.csv")
             output_string += opt.decode('utf-8') + f_path[6] + "\n"
             
     with open("output" + current_character + ".csv", "w") as f:

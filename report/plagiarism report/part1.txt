@@ -1,0 +1,107 @@
+
+  Sign Languages are languages that use visual gestures for
+  communication rather than spoken words. These languages are also
+  considered natural languages, meaning they evolved over time according
+  to the needs of the users of language. This means that they are very
+  different from the verbal languages and have grammer and lexicon of
+  their own. This makes communication between the users of sign language
+  and verbal languages difficult. Thus there is a need for sign language
+  recognition systems which can help bridge the barrier. With recent
+  developments in computer vision there is room for models which are
+  faster and easier to deploy on weaker hardware.
+
+  Sign Language Recognition using computers is a task with many
+  obstacles. The high number of possible gestures means we need a
+  recognition model which can distinguish between a myriad of
+  classes. The gestures also look very similar which makes
+  distinguishing them harder. Images tend to have a large number of
+  features. But more features does not mean the model will give better
+  predictions. To increase the accuracy of a recognition model, we need
+  to extract features that are relevant to our predictions. Since hands
+  are very complex, having a multitude of different skin types and
+  tones; it is requisite to preprocess the input data to extract only
+  necessary features.
+
+  The motivation for this project stems from need for communication
+  between users of sign languge and verbal languages. This project aims
+  to create a model which can give fast and accurate predictions. It
+  should also be able to run on weaker hardware. Another goal was that
+  the whole system is able to run on a single machine. The goal was to
+  make the project more portable. This also means not using a
+  server-client model; where client can send data to a server and a more
+  powerful server can make predictions and send results back to
+  client. Therefore, it is essential for the model and the user
+  interface to be light weight. This project serves to show that a
+  lightweight recognizer that can classify an image into one of a large
+  number of classes and can be integrated into other applications is
+  feasible with innovations in machine learning.
+
+  This project will focus specifically on the prediction of alphabets
+  and digits of Indian Sign Language. A model that could translate the
+  grammar and lexicon of the complete Indian Sign Language will need a
+  recognizer, as well as a model which can translate gestures to written
+  languages. Here, only the recognizer which can classify gestures into
+  one of the thirty six classes (the alphabets and the digits). The
+  project will also not focus on background removal and is trained on
+  dataset with background removed. In a practical system, another method
+  which could isolate the hands from rest of the image will be
+  needed. The recognizer which is built in this project is also
+  integrated with live video input using OpenCV for demonstrating the
+  portability of the model. To get correct predictions a camera with
+  high resolution and an undecorated background (ideally a single color)
+  is recommended.
+
+  This project has three components. The first component is used to
+  extract features from the input image. This is done using the
+  Sobel–Feldman operator or Sobel filter. Edge detection allows us to
+  effectively isolate the hands from the rest of the input image. It
+  also helps in avoiding features that are not useful such as skin
+  color. The second component is the model which makes the
+  prediction. This is a simple feed-forward neural network which has
+  takes a 128 * 128 size matrix as an input and has 36 nodes (which
+  represent the class of the gesture) as outputs. The final component is
+  the openCV application which will take the video input using the
+  webcam. This acts as the controller for the whole application. It will
+  resize the input from the webcam, use the sobel filter, get the
+  prediction using the model and finally output it to the user.
+
+  The user will interact with the OpenCV application, where they can see
+  the video that is used as the input and it will also show the results
+  of the prediction. The sequence diagram in Figure 1 shows how the
+  application behaves during operation. A frame is taken from the video,
+  which is resized to an 128 * 128 size image. This image is taken in as
+  an input by the Sobel Filter. The filter application will return data
+  in form of CSV. This data can then be given to model. The prediction
+  is then returned to the main application, which shows result to the
+  user and takes the next frame to repeat the process.
+
+
+1.4 Related Work
+~~~~~~~~~~~~~~~~
+
+  There have been multiple articles and efforts for Indian Sign Language
+  Recognition. Some of the related works which have inspired this
+  project and their results will be presented in this chapter.
+
+  + The first work is (3). This paper does Indian Sign Language (ISL)
+    recognition using Euclidean distance. The goal of this paper was to
+    create a recognition system for Humanoid Robot Interaction (HRI),
+    therefore it works on real-time video input. The platform was a made
+    using JAVA software. This study managed to get a recognition rate of
+    90%
+  + The second work is (2). This paper used Histogram of Edge Frequency
+    (HOEF) for feature selection. They took images as input, and used
+    Support Vector Machine (SVM) for classification. They managed to get
+    a recgonition rate of 98.1%
+  + The third work is (1). They used artificial neural network (ANN)
+    implemented using Matlab in this paper. They worked on real-time
+    video input. The recognition rate they got was 93%.
+
+  A summary of results from these different works in shown in table
+  below
+
+   Work  Input   Classification      Recognition  Platform 
+  ---------------------------------------------------------
+   (3)   Video   Eucledian Distance          90%  JAVA     
+   (2)   Images  SVM                       98.1%  N/A      
+   (1)   Video   ANN                         93%  Matlab   

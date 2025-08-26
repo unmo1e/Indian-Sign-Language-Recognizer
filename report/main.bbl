@@ -1,0 +1,37 @@
+\begin{thebibliography}{1}
+
+\bibitem{lossfunc}
+\url{https://ml-cheatsheet.readthedocs.io/en/latest/loss_functions.html}.
+
+\bibitem{gradientdescent}
+\url{https://musstafa0804.medium.com/optimizers-in-deep-learning-7bf81fed78a0}.
+
+\bibitem{stblibraries}
+\url{https://github.com/nothings/stb}.
+
+\bibitem{kishore2011video}
+P.~Kishore, P.~R. Kumar, E.~K. Kumar, and S.~Kishore.
+\newblock Video audio interface for recognizing gestures of indian sign.
+\newblock {\em International Journal of Image Processing (IJIP)}, 5(4):479,
+  2011.
+
+\bibitem{lilha2011evaluation}
+H.~Lilha and D.~Shivmurthy.
+\newblock Evaluation of features for automated transcription of dual-handed
+  sign language alphabets.
+\newblock In {\em 2011 international conference on image information
+  processing}, pages 1--5. IEEE, 2011.
+
+\bibitem{nandy2010recognizing}
+A.~Nandy, S.~Mondal, J.~S. Prasad, P.~Chakraborty, and G.~Nandi.
+\newblock Recognizing \& interpreting indian sign language gesture for human
+  robot interaction.
+\newblock In {\em 2010 international conference on computer and communication
+  technology (ICCCT)}, pages 712--717. IEEE, 2010.
+
+\bibitem{sobelop}
+I.~Sobel.
+\newblock An isotropic 3x3 image gradient operator.
+\newblock {\em Presentation at Stanford A.I. Project 1968}, 02 2014.
+
+\end{thebibliography}

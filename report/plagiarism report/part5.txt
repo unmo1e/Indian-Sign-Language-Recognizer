@@ -1,0 +1,66 @@
+
+  To classify our images after applying the sobel operator, we have use
+  an Artificial Neural Network (ANN) with three layers. The model
+  supports inputs of size 128 * 128. The first layer has 16,384 neurons
+  for input and is using ReLU activation function. The second layer
+  which is the hidden layer of our model, has 8,174 neurons and also
+  uses the ReLU activation function. The final layer which is the output
+  layer has 36 neurons for the number of classes we need to
+  recognize. We use the cross-entropy loss function because it works
+  well with classification tasks, especially with high number of
+  classes. We use the AdaGrad algorithm for optimization of the loss
+  function. This is a variant of the Gradient Descent in which learning
+  rates are adjusted during training. In our testing data, this gave us
+  an accuracy of 98.77% as seen in Figure 8 this may be lower for other
+  more general datasets and needs more testig with varied inputs.
+
+  The final component of our project is the openCV application which
+  ties the other two parts together, allowing us to take input from
+  real-time video and pass it through other two components. It will also
+  tell the prediction to the user. This application has the most scope
+  for work in the future. This component currently rescales the input,
+  applies grayscale (though this part is not necessary since the sobel
+  filter application can do it) and then saves the image. Then it calls
+  sobel filter application to convert the image to csv output, this is
+  data is given to the model which produces the final prediction.
+
+  There are many future avenues for exploration, several compelling
+  directions emerge, aligning seamlessly with the trajectory of this
+  project and its uses for use by general public. Firstly, we can devle
+  deeper into the edge detection where we can upgrade from a simple
+  sobel filter to canny edge detection. This algorithm works after sobel
+  filter to further select only the most prominent edges. This will help
+  in getting better accuracy when working on real-time input like video,
+  because most modern cameras usually focus on the foreground
+  effectively making edges of the focus (hands) more prominent. We can
+  go further and add a way to remove the background from our input. This
+  would required another suitable algorithm or model which can detect
+  the background and remove it.
+
+  The neural network can be upgraded to a Convolution Neural Network
+  (CNN). These networks are better suited for computer vision tasks than
+  traditional Neural Network which we have used in this
+  project. Increasing the quality of the dataset, with more varied
+  images which the network can train on. It would also be ideal if these
+  images could have more noise in the background so that we could train
+  the model to only isolate the hands.
+
+  The frontend application needs the most work in the future, if this
+  project is to be used for gesture detection in true-to-life
+  setting. The current implementation relies on OpenCV, but we are not
+  using all of the capabilities of the library. It was chosen since it
+  was appropriate for the scope of this project, but switching to
+  another library which is lighter and can allow us to work with camera
+  directly will significantly improve performance. Alternatively, we
+  could also use OpenCV to do more difficult tasks such as the canny
+  edge detection mentioned before. This would make the use of such a
+  large library appropriate. The fontend also needs to be more user
+  friendly and intuitive to use.
+
+  In essence, the future holds boundless opportunities for advancing the
+  field of sign language recognition through interdisciplinary
+  collaboration, innovative technologies, and a steadfast commitment to
+  excellence. By embracing these opportunities and staying attuned to
+  emerging trends and challenges, we can continue to push the boundaries
+  of what's achievable, driving innovation and shaping the future of
+  computer vision.

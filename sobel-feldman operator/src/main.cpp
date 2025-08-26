@@ -102,32 +102,36 @@ int main(int argc, char **argv)
   Matrix grayscale(data, width, height);
   // {1, 0, -1, 2, 0, -2, 1, 0 , -1}
   // {47, 0, -47, 162, 0, -162, 47, 0, -47}
-  int x_kernel[] =  {47, 0, -47, 162, 0, -162, 47, 0, -47};
+  int x_kernel[] =  ;
   // {1, 2, 1, 0, 0, 0, -1, -2, -1}
   // {47, 162, 47, 0, 0, 0, -47, -162, -47}
   int y_kernel[] = {47, 162, 47, 0, 0, 0, -47, -162, -47};
 
-  Matrix scharr_x(x_kernel, 3, 3);
-  Matrix scharr_y(y_kernel, 3, 3);
+  Matrix sobel_x({1, 0, -1,
+                  2, 0, -2,
+                  1, 0 , -1}, 3, 3);
+  Matrix sobel_y({1, 2, 1,
+                  0, 0, 0,
+                  -1, -2, -1}, 3, 3);
 
-  Matrix Gx = grayscale.convolute(scharr_x);
-  Matrix Gy = grayscale.convolute(scharr_y);
+  Matrix Gx = grayscale.convolute(sobel_x);
+  Matrix Gy = grayscale.convolute(sobel_y);
   
-  double *energy = new double[width * height];
-  double max_energy = 0;
+  double *magnitude = new double[width * height];
+  double max_magnitude = 0;
   for(int i = 0; i < (width * height); i++)
     {
       double value = std::sqrt(Gx.data[i] * Gx.data[i] + Gy.data[i] * Gy.data[i]);
-      if (value > max_energy)
-	max_energy = value;
-      energy[i] = value;
+      if (value > max_magnitude)
+	max_magnitude = value;
+      magnitude[i] = value;
     }
-  cout << "[INFO] Max energy : " << max_energy << endl;
+  cout << "[INFO] Max magnitude : " << max_magnitude << endl;
   
-  uint8_t *edges_image = new uint8_t[width * height];
+  uint8_t *output = new uint8_t[width * height];
   for(int i = 0; i < (width * height); i++)
     {
-      edges_image[i] = (energy[i] / max_energy) * 255;
+      output[i] = (magnitude[i] / max_magnitude) * 255;
     }
 
   int success = stbi_write_jpg(argv[2], width, height, 1, edges_image, 0);

@@ -1,0 +1,99 @@
+
+  These artificial neurons are placed in layers to form our network. The
+  input is passed to the first layer called the input layer, after which
+  it moves forwards where are transformations are done on it by each
+  neuron. This process is called the forward propagation. Eventually,
+  the signal will reach the last layer called the output layer. The
+  layers between input layer and output layers are called hidden
+  layers. The number of artificial neurons in the input layer will
+  depend on the input. Since we have a 128 * 128 sized image, we will
+  have 16,384 neurons in our input layer. We are making a recognizer, so
+  number of neurons in output layer is number of classes. Thus our model
+  will have 36 neurons in the output layer.
+
+  The design of artificial neurons is inspired by how biological neurons
+  work. More precisely, it uses two types of behaviour from the
+  biological neuron. There is excitatory potential and inhibitory
+  potential for activation. So for every incoming signal, the neuron
+  either increases it with excitatory potential or decreases it with
+  inhibitory potential. This is copied in our artificial neuron as
+  weights. These weights are multiplied with our inputs and can be used
+  to increase or decrease the intensity of the different inputs. The
+  appropriate value for these weights is calculated during training
+  using a process called backpropagation.
+
+  The structure of an artificial neuron is shown in Figure 4. A single
+  neuron has multiple inputs it can take. This is shown in figure as
+  variables $x_1, x_2, x_3 ... x_n$. Every input to the neuron will have
+  an associated weight. If we suppose the neuron number is $j$ in the
+  layer. We will represent the weights as $w_{1j}, w_{2j}, w_{3j}
+  ... w_{nj}$. Now we need to combine all the inputs. This is done by a
+  transfer function, which is summation in most models. Therefore, we
+  will combine all the inputs as,
+
+  \[ x_1 w_{1j} + x_2 w_{2j} + x_3 w_{3j} + ... + x_n w_{nj} =
+  \sum_{i=1}^{n} x_i w_{ij}\]
+
+  The next part of the neuron is the activation function. This function
+  will take the result of the transfer function and produce the final
+  output of the neuron. The need for activation function is to provide
+  non-linearity. The transfer function only applies linear operations on
+  the inputs. Having non-linear output allows our model to store
+  relationships and patterns more efficiently. Some activation functions
+  such as the ReLU function also help preventing signal saturation, a
+  phenomenon where gradients become too small for learning.
+
+  Our model is only using a single activation function. It is the ReLU
+  activation function. This function is very useful, specially in our
+  project. This function helps to avoid the problem of vanishing
+  gradients, which occurs in other activation functions. It is also
+  simple to implement and computationally inexpensive. The one
+  limitation of ReLU is that if inputs are consistently negetive, output
+  will always be zero. In our project, we are using images with
+  intensity of each pixel as input, this problem won't occur in our
+  model. The graph of the ReLU function is shown in Figure 5.
+
+  The function is defined mathematically as \[ ReLU(x) = \frac{x +
+  |x|}{2} \] But it is easier to implement in code by using the defition
+  \[ ReLU(x) = max(0, x) \]
+
+  The process of training in a neural network involves tweaking the
+  weights associated with inputs of the neurons until we get expected
+  results. In training and tweaking the weights, the model will learn
+  the patterns in our input data. Thus, we will split our dataset into
+  training data and testing data. The training data is used in the
+  training process and the testing data is for testing our model. In our
+  model, we have an 80 split for training and 20 for testing. The first
+  step in training the model is choosing the loss function.
+
+  The loss function (also called the cost function) is a function which
+  shows how far our current predictions are from the actual answer. This
+  allows us to automate the task of tweaking our weights in a way such
+  that gets us better predictions, since we now only need to worry about
+  minimizing the cost function and not worry about all of the neurons
+  individually. There are multiple loss functions to choose from based
+  on different use cases. A frequently used loss function is the Mean
+  Square Error (MSE), but that function is better suited for
+  regression. The loss function which is suitable for classification
+  task is the Cross-Entropy loss function.
+
+  The Cross-Entropy loss function is used from (4). The cross-entropy
+  loss increases as the predicted probability diverges from actual
+  label. This function minimizes the cost when the signal of the
+  predicted label is correct. It also increases the cost for when
+  signals of other labels are high but this effect is weaker than
+  previous. This is shown in Figure 6 with the value of loss in y-axis
+  and signal strength of predicted label is in x-axis.
+
+  The Cross-Entropy loss is calculated by the following equation. Here,
+  $M$ is the number of classes, $y_i$ is the expected output of label
+  $i$ and $p_i$ is the prediction.
+
+  We now have a way to check the performance of the model, so we can use
+  an optimizer which will find the appropriate weights to minimize the
+  loss function. The most well known optimizer is the stochastic
+  gradient descent (SDE). It is a variant of the gradient descent
+  method, which is a general purpose algorithm which can be used to
+  minimize any function.  It uses gradient (slope) to calculate the
+  minima of the given loss function. According to (5), the formula for
+  gradient descent is

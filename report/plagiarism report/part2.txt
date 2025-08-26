@@ -1,0 +1,74 @@
+
+  The Sobel-Feldman operator (or simply Sobel filter) is a computer
+  vision algorithm which can be used for edge detection. The filter
+  takes a grayscale image as it's input and create another image
+  emphasising the edges. This project uses the sobel filter as described
+  in (7). The operator is named after Irwin Sobel and Gary M. Feldman,
+  who introduced the idea in 1968 at Stanford Artificial Intelligence
+  Laboratory (SAIL). This filter uses the convolution operator to
+  extract the edges from image by the change in magnitude.
+
+  Convolution is an operation which takes two matrices (an input and a
+  kernel) and outputs another matrix which is of same size as the input
+  matrix. It is the process of adding each element of the input to its
+  local neighbors, weighted by the kernel. The convolution operation is
+  denoted by *​. The operation usually uses a 3 * 3 sized kernel, but it
+  is not necessary. Convolution is a simple to implement and fast
+  operation to implement. But it is also very useful allowing for
+  multiple useful filters. Some of the most simple and useful ones are
+  Gaussian Blur, Sharpening and Sobel Filter (which we are using).
+
+  This project only uses the 3 * 3 sized kernels, this is done to make
+  implementation simpler. This means in our case if the kernel is K and
+  the input is I. Then the output O is given as
+  So we can have our Matrix class as 
+  But this function will not work for the pixels at the border of the
+  input matrix. Since if we try to get the the value for border pixel
+  [0, 0] we will need to get $I[-1, -1]$, $I[-1, 0]$, etc. pixels which
+  do not exist since there are no pixels to the left. There are three
+  common ways to solve this problem
+  + Filling with zeros, so that pixels outside the input are zero
+  + Wrapping, the image is wrapped on all eight corners of the image
+  + Mirroring, we mirror the image along the perimeter of the image
+
+  This project will fill with zeros if we need a pixel outside the
+  boundry of the image.
+
+  Now that we know the definition of convolution and how to handle the
+  edge cases, we can implement the this operation in code.
+
+  The sobel operator needs two convolution operations to detect the
+  edges. The sobel operator works by calculating the change in image
+  intensity, that is it works by calculating the difference in value of
+  the value compared to its neighbors. The two convolution operations
+  are to get the vertical changes and horizontal changes
+  1. Horizontal changes: This is represented as $G_x$ and is calculated
+
+  2. Vertical changes: This is represented as $G_y$ and is calculated as
+
+
+  We don't need the direction of the edge, we only need the
+  magnitude. To calculate the magnitude, we will combine both the above
+  results \[ G = \sqrt{G_x^2 + G_y^2} \]
+
+  Using the Matrix class we implemented in previous section, we can
+  implement this algorithm as
+
+  The code to calculate magnitude is as follows
+
+  Finally, we will output the image by converting the magnitude to an
+  integer value between 0 and 255 by using the maximum magnitude.
+
+  The result of the sobel filter on one of the image from our dataset is
+  shown in Figure 3. Here, we have shown the output in form of a image
+  by converting magnitude to an integer between 0 and 255. In the
+  project, we work using magnitudes directly.
+
+  A neural network is a type of machine learning model. It is inspired
+  by the human brain, which is composed of neurons that form different
+  pathways to process data and learn patterns. To mimic this behaviour,
+  neural networks in coumputers are made of artificial neurons. An
+  artificial neuron is a function which is conceived as a model of
+  biological neuron in a neural network. An artificial neuron is the
+  smallest unit of the Artificial Neural Network (ANN). The artificial
+  neuron is based on how biological neurons work in human brain.
